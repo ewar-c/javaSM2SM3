@@ -65,7 +65,7 @@ public class JdbcUtils {
         }
     }
     public static void main(String[] args) throws SQLException {
-        String sql = "select count(*) from login_table where user_hashcode = '166c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0'";
+        String sql = "select count(*) from encrypted_transmission.login_table where user_hashcode = '166c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0'";
         Connection conn = JdbcUtils.getConnection();
         Statement stmt=conn.createStatement();
         ResultSet result = stmt.executeQuery(sql);

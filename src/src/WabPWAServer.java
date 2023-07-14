@@ -21,7 +21,7 @@ public class WabPWAServer {
     //public ServerSocket serverSocket =new ServerSocket(9000);
     private String publicKey="";
     private String userNameHashCode = "";
-    public ServerSocket serverSocket = null;
+    public ServerSocket serverSocket;
     public int port = 0;
     public WabPWAServer(int port) throws IOException {
         this.port = port;
@@ -44,6 +44,8 @@ public class WabPWAServer {
         }
         return tmp;
     }
+
+
     public boolean checkPasswd(String userNameHashCode,String passwdHashCode) throws SQLException {
         boolean tmp = false;
         String sql = "select passwd_hashcode from login_table where user_hashcode = '" + userNameHashCode + "'";
@@ -55,6 +57,7 @@ public class WabPWAServer {
         }
         return tmp;
     }
+
     public boolean loginCheck(String userNameHashCode,String passwdHashCode) throws SQLException {
         boolean tmp=false;
         if (checkUserName(userNameHashCode)){
@@ -98,7 +101,7 @@ public class WabPWAServer {
             InputStream inputStream = accept.getInputStream();
             InputStreamReader inputStreamReader=new InputStreamReader(inputStream);
             BufferedReader bufferedReader=new BufferedReader(inputStreamReader);//为输入端添加缓冲
-            String info="";
+            String info;
             String result="";
             while ((info=bufferedReader.readLine())!=null)
             {
@@ -147,9 +150,7 @@ public class WabPWAServer {
             outputStream.close();
             printWriter.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
 

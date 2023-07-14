@@ -1,6 +1,7 @@
 package src;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Login {
@@ -9,7 +10,7 @@ public class Login {
 	JPasswordField pwdField = null;
 
 	ClientReadAndPrint.LoginListen listener=null;
-
+	Register.RegisterListen registerListen = null;
 	// 构造函数
 	public Login() {
 		init();
@@ -36,7 +37,11 @@ public class Login {
 		jp2.add(pwdJLabel);
 		jp2.add(pwdField);
 		jp2.add(loginButton);
-		//jp2.add(registerButton);
+
+		JButton registerButton = new JButton("Register");
+		jp2.add(registerButton);
+		registerListen = new Register.RegisterListen();
+		registerButton.addActionListener(registerListen);
 
 		JPanel jp = new JPanel(new BorderLayout());  // BorderLayout布局
 		jp.add(jp1, BorderLayout.NORTH);

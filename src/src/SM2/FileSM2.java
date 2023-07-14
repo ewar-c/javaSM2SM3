@@ -9,7 +9,6 @@ import src.FileUtils;
 /**
  * SM2 国密算法 工具类
  */
-@Slf4j
 public class FileSM2 {
 
     /**
